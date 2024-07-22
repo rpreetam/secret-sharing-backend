@@ -20,7 +20,6 @@ app.get("/", (req, res)=>{
 })
 
 
-
 mongoose
   .connect(mongoDBURL)
   .then(() => {
