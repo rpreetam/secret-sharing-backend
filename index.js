@@ -11,7 +11,13 @@ app.use(express.json());
 
 // Middleware for handling CORS POLICY
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://secret-sharing-sigma.vercel.app',
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+app.options('*', cors());
 
 app.use('/api/auth', require('./routs/auth'))
 app.use('/api/secrets', require('./routs/secrets'))
