@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(cors({
     origin: 'https://secret-sharing-sigma.vercel.app',
     methods: ['GET', 'POST', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+    allowedHeaders: ['Content-Type', 'auth-token']
 }));
 
 app.options('*', cors());
