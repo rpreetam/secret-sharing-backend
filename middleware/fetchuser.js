@@ -19,7 +19,7 @@ const fetchuser = (req, res, next) => {
     }
 
     try {
-        if (token !== "null") {
+        if (token !== null) {
             console.log("token:", token)
             const data = jwt.verify(token, JWT_SECRET);
             req.user =  data.user
