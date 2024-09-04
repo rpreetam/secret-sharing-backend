@@ -119,39 +119,5 @@ router.post('/getuser', fetchuser, async (req, res) => {
         res.status(500).send("Internal Server Error")
     }
 })
-// Route 4 Authenticate a User using: POST "/api/auth/google". No login required 
-router.post('/google', (req, res) => {
-    const { code } = req.body;
-    console.log("code in be",code);
 
-    const grant_type = 'authorization_code';
-
-    fetch('<https://oauth2.googleapis.com/token>', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-            code,
-            client_id,
-            client_secret,
-            redirect_uri,
-            grant_type,
-        }),
-    })
-        .then(response => {
-        console.log(".then response",response)
-    return response.json()})
-        .then(tokens => {
-            // Send the tokens back to the frontend, or store them securely and create a session
-            res.json(tokens);
-        })
-
-        .catch(error => {
-            // Handle errors in the token exchange
-            console.error('Token exchange error:', error);
-            console.log("in catch",)
-            res.status(500).send({ error: 'Internal Server Error' });
-        });
-});
 module.exports = router
