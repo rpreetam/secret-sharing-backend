@@ -1,3 +1,4 @@
+require('dotenv').config();
 var jwt = require('jsonwebtoken');
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -19,7 +20,7 @@ const fetchuser = (req, res, next) => {
     }
 
     try {
-        if (token!== null) {
+        if (token) {
             console.log("token:", token)
             const data = jwt.verify(token, JWT_SECRET);
             req.user =  data.user

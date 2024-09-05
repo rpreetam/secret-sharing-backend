@@ -5,7 +5,7 @@ const Secret = require('../models/Secret');
 const { body, validationResult } = require('express-validator');
 
 // ROUTE 1: Get All the secrets using: GET "/api/secrets/fetchallsecrets". Login required
-router.post('/fetchallsecrets', fetchuser, async (req, res) => {
+router.post('/fetchallsecrets', async (req, res) => {
     try {
         console.log("under try")
         const secrets = await Secret.find();
