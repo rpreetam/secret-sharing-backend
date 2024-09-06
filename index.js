@@ -17,7 +17,7 @@ app.use(cors());
 
 app.use('/api/auth', require('./routs/auth'))
 app.use('/api/secrets', require('./routs/secrets'))
-app.get("/", (req, res)=>{
+app.get("/", (req, res) => {
   res.json("Hello");
 })
 
@@ -26,7 +26,7 @@ mongoose
   .connect(mongoDBURL)
   .then(() => {
     console.log('App connected to database');
-     app.listen(PORT, () => {
+    app.listen(PORT, () => {
       console.log(`App is listening to port: ${PORT}`);
     });
   })
