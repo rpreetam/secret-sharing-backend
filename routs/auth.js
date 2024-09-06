@@ -10,9 +10,6 @@ var fetchuser = require('../middleware/fetchuser');
 
 const JWT_SECRET = process.env.JWT_SECRET;
 const client_id = process.env.GOOGLE_CLIENT_ID;
-const client_secret = process.env.GOOGLE_CLIENT_SECRET;
-const redirect_uri = process.env.GOOGLE_REDIRECT_URI;
-console.log("client id:",client_id)
 
 // ROUTE 1: Create a User using: POST "/api/auth/create". No login required
 
