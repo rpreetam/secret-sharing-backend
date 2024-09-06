@@ -1,4 +1,7 @@
+require('dotenv').config();
+var jwt = require('jsonwebtoken');
 const express = require('express');
+const JWT_SECRET = process.env.JWT_SECRET;
 const router = express.Router();
 const fetchuser = require('../middleware/fetchuser');
 const Secret = require('../models/Secret');
@@ -18,12 +21,12 @@ router.post('/fetchallsecrets', async (req, res) => {
 
 
 // ROUTE 2: Add a Secret using: POST "/api/secrets/addsecret". Login required
-router.post('/addsecret', fetchuser, [
+router.post('/addsecret',  [
     body('description', 'Description must be atleast 5 characters').isLength({ min: 5 }),], async (req, res) => {
         try {
             const { description } = req.body;
-            const userId = req.user.id;
-
+            const userId = req.body?.user?.id || jwt.verify( req.header('auth-token'),JWT_SECRET)?.user?.id  ;
+           console.log('userId', userId);
             //check if user has already posted a secret
             const note = await Secret.findOne({ user: userId })
             if (note) {
@@ -36,7 +39,7 @@ router.post('/addsecret', fetchuser, [
             }
             const secret = new Secret({
                 description,
-                user: req.user.id
+                user: userId
 
             })
             const savedSecret = await secret.save()
