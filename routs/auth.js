@@ -9,7 +9,6 @@ var jwt = require('jsonwebtoken');
 var fetchuser = require('../middleware/fetchuser');
 
 const JWT_SECRET = process.env.JWT_SECRET;
-const client_id = process.env.GOOGLE_CLIENT_ID;
 
 // ROUTE 1: Create a User using: POST "/api/auth/create". No login required
 
